@@ -1,7 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import * as DemoAction from './actions/DemoAction'
-import { DialogflowApp } from '../node_modules/@types/actions-on-google'
+import {WebhookClient} from 'dialogflow-fulfillment';
 
 
 admin.initializeApp(functions.config().firebase);
@@ -12,16 +11,36 @@ const WELCOME_INTENT = 'input.welcome';
 
 export const helloWorld = functions.https.onRequest((request, response) => {
 
-    console.log('headers: ' + JSON.stringify(request.headers));
-    console.log('body: ' + JSON.stringify(request.body));
+    // console.log('headers: ' + JSON.stringify(request.headers));
+    // console.log('body: ' + JSON.stringify(request.body));
 
-    const dialogflowApp = new DialogflowApp({request, response})
-    interface Action {
-        name: string,
-        handler: (app: DialogflowApp) => void
+    // const dialogflowApp = dialogflow()
+    // interface Action {
+    //     name: string,
+    //     handler: (app: DialogflowApp) => void
+    // }
+    // const actions: Action[] = [
+    // // Add actions here.
+    // DemoAction
+    // ]
+
+
+    const agent = new WebhookClient({ request, response });
+    console.log('Dialogflow Request headers: ' + JSON.stringify(request.headers));
+    console.log('Dialogflow Request body: ' + JSON.stringify(request.body));
+  
+    function welcome () {
+      agent.add(`Welcome to my agent!`);
     }
-    const actions: Action[] = [
-    // Add actions here.
-    DemoAction
-    ]
+  
+    function fallback () {
+      agent.add(`I didn't understand`);
+      agent.add(`I'm sorry, can you try again?`);
+    }
+
+    const intentMap = new Map();
+    intentMap.set('Default Welcome Intent', welcome);
+    intentMap.set('Default Fallback Intent', fallback);
+    agent.handleRequest(intentMap);
+
 });
