@@ -13,10 +13,10 @@
   "dependencies": {
     "actions-on-google": "^2.3.0",
     "firebase-admin": "~5.12.1",
-    "firebase-functions": "^1.0.3"
+    "firebase-functions": "^1.0.3",
+    "@types/actions-on-google": "^1.10.2"
   },
   "devDependencies": {
-    "@types/actions-on-google": "^1.10.2",
     "tslint": "^5.8.0",
     "typescript": "^2.5.3"
   },
