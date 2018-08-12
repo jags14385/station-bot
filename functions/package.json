@@ -16,6 +16,7 @@
     "firebase-functions": "^1.0.3"
   },
   "devDependencies": {
+    "@types/actions-on-google": "^1.10.2",
     "tslint": "^5.8.0",
     "typescript": "^2.5.3"
   },
