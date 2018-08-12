@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import { DialogflowApp } from 'actions-on-google';
 import * as DemoAction from './actions/DemoAction'
+import { DialogflowApp } from '../node_modules/@types/actions-on-google/dialogflow-app';
 
 
 admin.initializeApp(functions.config().firebase);

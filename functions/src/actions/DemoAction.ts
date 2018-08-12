@@ -1,4 +1,4 @@
-import { DialogflowApp } from 'actions-on-google'
+import { DialogflowApp } from '../../node_modules/@types/actions-on-google/dialogflow-app';
 
 export const name = 'demo_action'
 export function handler(app: DialogflowApp) {
