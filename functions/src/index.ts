@@ -5,10 +5,8 @@ import { DialogflowApp } from '../node_modules/@types/actions-on-google/dialogfl
 
 
 admin.initializeApp(functions.config().firebase);
-const db = admin.database();
-
+// const db = admin.database();
 // https://firebase.google.com/docs/functions/typescript
-
 // Dialogflow Intent names
 const WELCOME_INTENT = 'input.welcome';
 
